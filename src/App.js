@@ -1,9 +1,10 @@
 import './App.css';
+import AdminTable from './Components/AdminTable.js';
 
 function App() {
   return (
     <div>
-      <h1>Hello React!</h1>
+      <AdminTable/>
     </div>
   );
 }
