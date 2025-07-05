@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# 🛠️ Admin Dashboard (MUI + React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a modern, responsive Admin Dashboard built with **React**, **Material UI (MUI)**, and **MUI X DataGrid**. It supports row selection, expansion with activity logs, dark/light theming, pagination, and interactive charts.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📁 Project Structure & Component Flow
 
-### `npm start`
+## 🔄 Component Flow
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1️⃣ **AdminTable.js**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Main component** that renders the user table using `MUI DataGrid`.
+- Manages all **core state**: selected rows, pagination, row expansion.
+- Handles logic for:
+  - Expanding rows with smooth scroll into view.
+  - Selecting/deselecting rows via checkbox.
+  - Deleting selected rows.
+  - Passing theme toggle to the toolbar.
 
-### `npm test`
+#### ➕ Also renders:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `<AdminTableToolbar />`: Top bar with theme toggle and delete button.
+- `<ActivityCollapse />`: Expandable rows showing activity logs + chart.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2️⃣ **AdminTableColumns.js**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Exports a function `getAdminTableColumns(...)` that returns the column configuration for the `DataGrid`.
+- Columns include:
+  - Checkbox selector
+  - Row expand/collapse icon
+  - Profile image
+  - ID, Name, Email, Role
+  - Signup date, Last login, Status
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+💡 **Note:** It takes in `isRowSelected`, `handleSelectRow`, `toggleRow`, and `openRows` as props from the parent for dynamic behavior.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3️⃣ **AdminTableToolbar.js**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Displays a top toolbar with:
+  - Selected row count
+  - Delete button (calls `onDelete`)
+  - Dark/light mode toggle button
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4️⃣ **ActivityCollapse.js**
 
-## Learn More
+- Renders expandable activity section for each user.
+- Displays:
+  - Activity logs (timestamp, action, device)
+  - A **LineChart** (via `@mui/x-charts`) showing activity by time/date.
+- Uses `forwardRef` to allow smooth `scrollIntoView()` when expanded.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 5️⃣ **data.js**
 
-### Code Splitting
+- Mock dataset of users.
+- Each user object contains:
+  - id, name, email, role, signup date, last login
+  - Profile image URL
+  - `activityLogs`: timestamped activity objects with device/IP.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🎨 Theme Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The app uses a custom `theme.js` with Material UI’s theming system to support:
 
-### Making a Progressive Web App
+- Light and dark modes
+- Consistent color palette across components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Toggled from `AdminTableToolbar.js` and passed down via props.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

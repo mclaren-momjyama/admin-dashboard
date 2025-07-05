@@ -1,0 +1,105 @@
+/* Container Styling */
+.admin-table-container {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--mui-palette-background-paper);
+}
+
+.admin-table-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Responsive Height */
+.data-grid-container {
+  width: 100%;
+  height: 400px;
+}
+
+@media (min-width: 600px) {
+  .data-grid-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 900px) {
+  .data-grid-container {
+    height: 600px;
+  }
+}
+
+/* DataGrid Root and Cell Styling */
+.custom-data-grid .MuiDataGrid-root {
+  border: none !important;
+  border-radius: 16px !important;
+  background-color: var(--mui-palette-background-default);
+}
+
+.custom-data-grid .MuiDataGrid-cell {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Header Styling */
+.custom-data-grid .MuiDataGrid-columnHeaders {
+  background-color: #ffeb3b !important; /* bright yellow */
+  color: red;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  border-bottom: 2px solid #fbc02d;
+}
+
+.custom-data-grid .MuiDataGrid-columnHeaderTitle {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/* Remove focus outlines */
+.custom-data-grid .MuiDataGrid-cell:focus,
+.custom-data-grid .MuiDataGrid-cell:focus-within,
+.custom-data-grid .MuiIconButton-root:focus {
+  outline: none;
+}
+
+/* Footer Styling */
+.custom-data-grid .MuiDataGrid-footerContainer {
+  border-top: 1px solid #e0e0e0;
+  background-color: var(--mui-palette-background-paper);
+}
+
+/* Row hover effect */
+.custom-data-grid .MuiDataGrid-row:hover {
+  background-color: #9bbbf3 !important; /* light yellow */
+}
+
+/* Selected row styling (text color fix) */
+.custom-data-grid .MuiDataGrid-row.Mui-selected,
+.custom-data-grid .MuiDataGrid-row.Mui-selected:hover {
+  background-color: #fff9c4 !important; /* soft yellow */
+  color: #000 !important; /* black text for contrast */
+}
+
+/* Ensure bold elements stay visible */
+.custom-data-grid .MuiDataGrid-row.Mui-selected .MuiDataGrid-cell strong {
+  color: #000 !important;
+}
+
+/* Optional: Icon/checkbox contrast */
+.custom-data-grid .MuiDataGrid-row.Mui-selected svg {
+  color: #000 !important;
+}
+
+
+.custom-data-grid .MuiDataGrid-cell:focus,
+.custom-data-grid .MuiDataGrid-cell:focus-within {
+  outline: none !important;
+  border: none !important;
+}
+
+.custom-data-grid .MuiDataGrid-cell:focus-visible {
+  outline: none !important;
+}

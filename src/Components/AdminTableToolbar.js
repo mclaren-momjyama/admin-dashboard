@@ -1,65 +1,40 @@
-import {
-  IconButton,
-  Toolbar,
-  Tooltip,
-  Typography,
-  TextField,
-} from '@mui/material';
+import { Toolbar, Typography, IconButton, Tooltip, useTheme } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const AdminTableToolbar = ({ numSelected, onDelete, onSearch, onEdit }) => {
-  let toolbarContent;
-  if (numSelected > 0) {
-    toolbarContent = (
-      <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
-        {numSelected} selected
-      </Typography>
-    );
-  } else {
-    toolbarContent = (
-      <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-        Admin UI
-      </Typography>
-    );
-  }
-
-  let editButton;
-  if (numSelected === 1) {
-    editButton = (
-      <Tooltip title="Edit">
-        <IconButton onClick={onEdit}>
-          <EditIcon />
-        </IconButton>
-      </Tooltip>
-    );
-  }
-
-  let deleteButton;
-  if (numSelected > 0) {
-    deleteButton = (
-      <Tooltip title="Delete">
-        <IconButton onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </Tooltip>
-    );
-  }
+export default function AdminTableToolbar({ numSelected, onDelete, toggleTheme, mode }) {
+  const theme = useTheme();
 
   return (
     <Toolbar>
-      {toolbarContent}
-      {editButton}
-      {deleteButton}
-      <TextField
-        sx={{ marginLeft: 'auto', width: '100%' }}
-        label="Search"
-        variant="outlined"
-        size="small"
-        onChange={onSearch}
-      />
+      <Typography
+        sx={{
+          flex: '1 1 100%',
+          fontWeight: 'bold',
+          fontSize: '1.5rem',
+          color: theme.palette.mode === 'dark' ? 'red' : theme.palette.text.primary
+        }}
+        variant="h6"
+        id="tableTitle"
+        component="div"
+      >
+        Admin Dashboard
+      </Typography>
+
+      <Tooltip title="Toggle Theme">
+        <IconButton onClick={toggleTheme}>
+          {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Tooltip>
+
+      {numSelected > 0 && (
+        <Tooltip title="Delete">
+          <IconButton onClick={onDelete}>
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
+      )}
     </Toolbar>
   );
-};
-
-export default AdminTableToolbar 
+}
